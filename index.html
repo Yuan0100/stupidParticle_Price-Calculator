@@ -211,7 +211,7 @@
         </ul>
         <h3>玩家人數</h3>
           <span id="noticeText" v-if="result.players < games[selectedGameId].minPeople">最低遊戲人數為 {{games[selectedGameId].minPeople}} 人</span>
-          <span id="noticeText" v-if="result.players >= games[selectedGameId].fullGroup">滿團 {{games[selectedGameId].fullGroup}} 人</span>
+          <span id="noticeText" v-if="result.players >= games[selectedGameId].fullGroup">滿團包場 {{games[selectedGameId].fullGroup}} 人</span>
         <ul class="buttonGroup"> 
           <li class="button" v-for="(item, index) in players" :id="index" @click="selectPlayerAmount(index)" :class="{'selected': selectedPlayerAmount == index},{'prevent': item < games[selectedGameId].minPeople}">{{item}}</li>
         </ul>
@@ -266,10 +266,8 @@
           ],
           selectedCouponId: 0,
           players: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-          selectedPlayerAmount: 8,
-          // selectedPeopleAmount: 8,
+          selectedPlayerAmount: 7,
           deposit: 1000,
-          // result: 0,
           result: {game: '', coupon: '', players: 0, deposit: 0, price: 0, totalPrice: 0, resultPrice: 0}
         }
       },
@@ -297,7 +295,7 @@
           if(currentCoupon.name === '無'){
             if(result.players >= currentGame.fullGroup){
               result.price = currentGame.fullGroupPrice
-              result.coupon = '滿團'
+              result.coupon = '滿團包場'
             }else{
               result.price = currentGame.price
             }
